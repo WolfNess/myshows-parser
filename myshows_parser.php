@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $series = array();
         foreach($seriesData->episodes as $episode) {
             if (!$season or $season == $episode->seasonNumber)
-                $series[] = preg_replace($filenameRegex, '.', ($seriesData->title . '.' . $episode->shortName . '.' . $episode->title . '.' . $ext));
+                $series[] = preg_replace('/\.{2,}/', '.', preg_replace($filenameRegex, '.', ($seriesData->title . '.' . $episode->shortName . '.' . $episode->title . '.' . $ext)));
         }
         $series = array_reverse($series);
 
